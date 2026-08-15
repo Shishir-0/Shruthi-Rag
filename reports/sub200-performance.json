@@ -1,0 +1,46 @@
+{
+  "benchmark_name": "SHRUTI Sub-200ms Time To First Answer (TTFA) Benchmark",
+  "total_queries": 300,
+  "errors": 24,
+  "duration_seconds": 0.96,
+  "ttfa_time_to_first_answer_ms": {
+    "count": 276,
+    "mean": 3.414,
+    "min": 0.313,
+    "max": 816.014,
+    "p50": 0.441,
+    "p70": 0.475,
+    "p90": 0.548,
+    "p95": 0.644,
+    "p99": 0.825,
+    "p100": 816.014
+  },
+  "ttfaudio_time_to_first_audio_ms": {
+    "count": 276,
+    "mean": 3.414,
+    "min": 0.313,
+    "max": 816.014,
+    "p50": 0.441,
+    "p70": 0.475,
+    "p90": 0.548,
+    "p95": 0.644,
+    "p99": 0.825,
+    "p100": 816.014
+  },
+  "ttr_time_to_retrieval_ms": {
+    "count": 276,
+    "mean": 0.233,
+    "min": 0.104,
+    "max": 1.417,
+    "p50": 0.221,
+    "p70": 0.244,
+    "p90": 0.289,
+    "p95": 0.32,
+    "p99": 0.448,
+    "p100": 1.417
+  },
+  "targets": {
+    "ttfa_p50_target_lt_100ms": "PASS",
+    "ttfa_p95_target_lt_200ms": "PASS"
+  }
+}

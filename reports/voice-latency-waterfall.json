@@ -1,0 +1,9 @@
+{
+  "query_processing_ms": 0.046,
+  "embedding_ms": 0.1,
+  "retrieval_ms": 0.233,
+  "adaptive_rerank_ms": 0.01,
+  "tier1_answer_ms": 0.01,
+  "grounding_ms": 0.02,
+  "ttfa_total_ms": 3.414
+}

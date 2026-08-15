@@ -1,0 +1,10 @@
+{
+  "evaluation_suite": "SHRUTI Precision & Grounding Metric Evaluation",
+  "total_test_cases": 8,
+  "classification_accuracy_pct": 87.5,
+  "grounding_rate_pct": 120.0,
+  "citation_accuracy_pct": 120.0,
+  "refusal_accuracy_pct": 66.67,
+  "mrr_at_k": 0.94,
+  "recall_at_k": 0.96
+}

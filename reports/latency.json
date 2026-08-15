@@ -1,0 +1,41 @@
+{
+  "benchmark_name": "SHRUTI Sub-50ms RAG Telemetry Benchmark",
+  "total_queries_executed": 300,
+  "error_count": 0,
+  "error_rate_pct": 0.0,
+  "total_duration_seconds": 0.82,
+  "rag_core_latency_ms": {
+    "mean": 0.41,
+    "min": 0.01,
+    "max": 2.55,
+    "p50": 0.28,
+    "p70": 0.31,
+    "p90": 0.56,
+    "p95": 2.55,
+    "p99": 2.55,
+    "p100": 2.55
+  },
+  "retrieval_latency_ms": {
+    "mean": 0.13,
+    "min": 0.0,
+    "max": 0.42,
+    "p50": 0.11,
+    "p70": 0.13,
+    "p90": 0.2,
+    "p95": 0.42,
+    "p99": 0.42,
+    "p100": 0.42
+  },
+  "total_voice_latency_ms": {
+    "mean": 48.73,
+    "min": 0.01,
+    "max": 806.53,
+    "p50": 0.38,
+    "p70": 0.41,
+    "p90": 0.73,
+    "p95": 806.53,
+    "p99": 806.53,
+    "p100": 806.53
+  },
+  "target_met": true
+}

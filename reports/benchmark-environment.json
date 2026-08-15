@@ -1,0 +1,12 @@
+{
+  "os": "Windows-11-10.0.26200-SP0",
+  "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+  "python_version": "3.14.0",
+  "qdrant_status": "Embedded Qdrant Client (qdrant_db)",
+  "embedding_model": "LightweightMultilingualVectorEngine-v1 & SentenceTransformer",
+  "vector_dimension": 384,
+  "bm25_algorithm": "BM25Okapi",
+  "stt_provider": "Sarvam Saaras v3",
+  "tts_provider": "Sarvam Bulbul v3",
+  "timestamp": "2026-08-15T23:13:48Z"
+}

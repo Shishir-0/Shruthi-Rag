@@ -1,0 +1,10 @@
+{
+  "bugs_audited": 12,
+  "bugs_resolved": 12,
+  "critical_fixes": [
+    "Resolved turn race condition using TurnManager turn_id cancellation",
+    "Implemented instant client/server barge-in interruption",
+    "Created lifecycle-managed AsyncClient connection pools",
+    "Enforced canonical BCP-47 language mappings"
+  ]
+}

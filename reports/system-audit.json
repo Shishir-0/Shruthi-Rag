@@ -1,0 +1,26 @@
+{
+  "system_audit": "SHRUTI Master Repository & Architecture Audit",
+  "audit_timestamp": "2026-08-15T22:59:00Z",
+  "audit_categories": {
+    "connection_pooling": {
+      "status": "HARDENED",
+      "findings": "Global persistent clients created for Qdrant, Redis, httpx.AsyncClient, STTSessionManager, and TTSSessionManager on app startup in main.py."
+    },
+    "websocket_lifecycle": {
+      "status": "HARDENED",
+      "findings": "Explicit connect, configure, stream, partial_flush, barge_in, and disconnect cleanup handlers implemented in ws_voice.py and stt_session.py."
+    },
+    "cancellation_and_barge_in": {
+      "status": "HARDENED",
+      "findings": "TurnManager handles turn_id tracking, cancelling active TTS audio streaming and LLM generation when new speech or barge-in signal arrives."
+    },
+    "memory_leak_prevention": {
+      "status": "HARDENED",
+      "findings": "Bounded LRU cache, explicit WebSocket cleanup, and MediaStreamTrack release handlers enforced."
+    },
+    "language_mapping": {
+      "status": "HARDENED",
+      "findings": "Canonical BCP-47 / Sarvam language code mapping: hi-IN (Hindi), gu-IN (Gujarati), bn-IN (Bengali), ta-IN (Tamil), en-IN (English)."
+    }
+  }
+}

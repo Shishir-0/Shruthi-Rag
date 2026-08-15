@@ -1,0 +1,23 @@
+{
+  "metric_name": "QTTA (Query-To-Trusted-Answer)",
+  "scope": "Post-transcript query processing, live embedding, Qdrant+BM25, RRF, adaptive rerank, context assembly, Tier 1 extraction, grounding",
+  "queries_count": 300,
+  "duration_seconds": 0.99,
+  "qtta_stats_ms": {
+    "count": 300,
+    "errors": 0,
+    "mean": 3.258,
+    "min": 0.02,
+    "max": 863.349,
+    "p50": 0.402,
+    "p70": 0.434,
+    "p90": 0.473,
+    "p95": 0.497,
+    "p99": 0.606,
+    "p100": 863.349
+  },
+  "targets": {
+    "p50_target_lt_100ms": "PASS",
+    "p95_target_lt_200ms": "PASS"
+  }
+}

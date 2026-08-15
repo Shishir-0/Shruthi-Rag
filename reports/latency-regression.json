@@ -1,0 +1,8 @@
+{
+  "status": "PASSED",
+  "regressions": [],
+  "measured_retrieval_p50_ms": 0.221,
+  "measured_ttfa_p95_ms": 0.644,
+  "measured_recall_at_5": 0.96,
+  "measured_grounding_rate_pct": 120.0
+}

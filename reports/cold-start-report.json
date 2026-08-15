@@ -1,0 +1,8 @@
+{
+  "benchmark": "SHRUTI True Cold-Start",
+  "import_and_module_load_ms": 406.33,
+  "index_and_db_connection_ms": 810.26,
+  "first_un_cached_query_ms": 2.25,
+  "total_cold_start_ms": 1218.85,
+  "subsequent_warm_query_rag_core_ms": 1.965
+}

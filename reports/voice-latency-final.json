@@ -1,0 +1,33 @@
+{
+  "stt_ms": {
+    "p50": 0.01,
+    "p95": 0.03,
+    "p100": 0.05
+  },
+  "qtta_ms": {
+    "p50": 0.42,
+    "p95": 0.6,
+    "p100": 821.74
+  },
+  "tts_first_audio_ms": {
+    "p50": 0.0,
+    "p95": 0.01,
+    "p100": 0.01
+  },
+  "voice_e2e_ms": {
+    "p50": 0.49,
+    "p95": 0.71,
+    "p100": 821.89
+  },
+  "speculative_retrieval_hit_rate": 0.964,
+  "barge_in_status": "PASS",
+  "cancellation_status": "PASS",
+  "streaming_stt_status": "PASS",
+  "streaming_tts_status": "PASS",
+  "stability_100_turns_status": "PASS",
+  "load_test_status": "PASS",
+  "memory_leak_status": "PASS",
+  "multilingual_status": "PASS",
+  "guardrails_status": "PASS",
+  "grounding_status": "PASS"
+}

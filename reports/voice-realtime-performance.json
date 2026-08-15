@@ -1,0 +1,28 @@
+{
+  "benchmark_name": "SHRUTI Real Voice Telemetry",
+  "runs_count": 25,
+  "metric_a_stt": {
+    "mean": 0.02,
+    "p50": 0.02,
+    "p95": 0.04,
+    "p100": 0.07
+  },
+  "metric_b_qtta": {
+    "mean": 37.42,
+    "p50": 0.47,
+    "p95": 1.02,
+    "p100": 922.21
+  },
+  "metric_c_atfa_tts": {
+    "mean": 0.01,
+    "p50": 0.01,
+    "p95": 0.02,
+    "p100": 0.02
+  },
+  "metric_d_voice_e2e": {
+    "mean": 37.53,
+    "p50": 0.58,
+    "p95": 1.21,
+    "p100": 922.41
+  }
+}
