@@ -7,6 +7,9 @@ import json
 import asyncio
 from pathlib import Path
 
+import os
+os.environ.setdefault("SHRUTI_TEST_MODE", "true")
+
 sys.path.insert(0, str(Path(__file__).parent.parent))
 sys.stdout.reconfigure(encoding='utf-8')
 

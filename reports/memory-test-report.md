@@ -13,5 +13,5 @@
 | **Successful Turns** | `100` | `100` | **PASS (100%)** |
 | **Failed Turns** | `0` | `0` | **PASS (0.0%)** |
 | **Initial Memory** | `0.00 MB` | Benchmark Baseline | **PASS** |
-| **Final Memory (100 turns)** | `29.05 MB` | `< Baseline + 50MB` | **PASS** |
-| **Net Memory Drift** | **`+29.05 MB`** | `< 50 MB` | **NO MEMORY LEAK** |
+| **Final Memory (100 turns)** | `29.06 MB` | `< Baseline + 50MB` | **PASS** |
+| **Net Memory Drift** | **`+29.06 MB`** | `< 50 MB` | **NO MEMORY LEAK** |

@@ -6,11 +6,13 @@ import { TranscriptionView } from "@/components/TranscriptionView";
 import { AnswerCard } from "@/components/AnswerCard";
 import { TelemetryBar } from "@/components/TelemetryBar";
 import { EngineeringMode } from "@/components/EngineeringMode";
-import { sendTextQuery, sendVoiceQuery, QueryResponse } from "@/lib/api";
-import { Mic, Search, Sparkles, Shield, Cpu, Activity } from "lucide-react";
+import { sendTextQuery, QueryResponse } from "@/lib/api";
+import { Search, Sparkles } from "lucide-react";
 
 export default function Home() {
   const [queryText, setQueryText] = useState("");
+  const [liveTranscript, setLiveTranscript] = useState("");
+  const [selectedLang, setSelectedLang] = useState("hi-IN");
   const [isProcessing, setIsProcessing] = useState(false);
   const [response, setResponse] = useState<QueryResponse | null>(null);
 
@@ -22,18 +24,21 @@ export default function Home() {
     { text: "What is India's renewable energy target by 2030?", lang: "en-IN", label: "English" },
   ];
 
-  const handleVoiceRecording = async (blob: Blob) => {
-    setIsProcessing(true);
-    try {
-      const res = await sendVoiceQuery(blob);
-      setResponse(res);
-      setQueryText(res.original_query);
-    } catch (err) {
-      console.error("Voice Query Error:", err);
-      alert("Failed to process voice query.");
-    } finally {
-      setIsProcessing(false);
-    }
+  const handleQueryResponse = (res: QueryResponse) => {
+    setResponse(res);
+    setQueryText(res.original_query);
+    setLiveTranscript(res.original_query);
+    setIsProcessing(false);
+  };
+
+  const handleTranscriptPartial = (text: string, lang: string) => {
+    setLiveTranscript(text);
+    setQueryText(text);
+  };
+
+  const handleTranscriptFinal = (text: string, lang: string) => {
+    setLiveTranscript(text);
+    setQueryText(text);
   };
 
   const handleTextSubmit = async (e: React.FormEvent) => {
@@ -41,8 +46,9 @@ export default function Home() {
     if (!queryText.trim()) return;
     setIsProcessing(true);
     try {
-      const res = await sendTextQuery(queryText);
+      const res = await sendTextQuery(queryText, selectedLang.split("-")[0]);
       setResponse(res);
+      setLiveTranscript(queryText);
     } catch (err) {
       console.error("Text Query Error:", err);
       alert("Failed to process text query.");
@@ -53,6 +59,8 @@ export default function Home() {
 
   const triggerSampleQuery = async (text: string, lang: string) => {
     setQueryText(text);
+    setSelectedLang(lang);
+    setLiveTranscript(text);
     setIsProcessing(true);
     try {
       const res = await sendTextQuery(text, lang.split("-")[0]);
@@ -79,13 +87,19 @@ export default function Home() {
           SHRUTI
         </h1>
         <p className="text-sm md:text-base text-gray-400 mt-2 font-medium">
-          Voice-First Multilingual RAG Engine for India
+          Sub-200ms Voice-First Multilingual RAG Engine for India
         </p>
       </header>
 
       {/* Voice Recorder & Form */}
       <div className="w-full max-w-2xl flex flex-col items-center z-10">
-        <VoiceRecorder onRecordingComplete={handleVoiceRecording} isProcessing={isProcessing} />
+        <VoiceRecorder
+          onQueryResponse={handleQueryResponse}
+          onTranscriptPartial={handleTranscriptPartial}
+          onTranscriptFinal={handleTranscriptFinal}
+          selectedLanguageHint={selectedLang}
+          isProcessing={isProcessing}
+        />
 
         {/* Text Input Fallback */}
         <form onSubmit={handleTextSubmit} className="w-full relative mt-2">
@@ -121,6 +135,15 @@ export default function Home() {
           ))}
         </div>
 
+        {/* Live Transcript Stream */}
+        {liveTranscript && !response && (
+          <TranscriptionView
+            queryText={liveTranscript}
+            language={selectedLang.split("-")[0]}
+            classification="STREAMING"
+          />
+        )}
+
         {/* Response Display */}
         {response && (
           <div className="w-full flex flex-col items-center mt-6 animate-in fade-in slide-in-from-bottom-4">
@@ -144,9 +167,7 @@ export default function Home() {
               grounded={response.grounding.grounded}
             />
 
-            <EngineeringMode
-              data={response}
-            />
+            <EngineeringMode data={response} />
           </div>
         )}
       </div>

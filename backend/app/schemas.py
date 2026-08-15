@@ -1,7 +1,6 @@
 """
 SHRUTI Pydantic Data Models & API Schemas
 """
-# pyrefly: ignore [missing-import]
 from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 
@@ -25,8 +24,8 @@ class SynthesisRequest(BaseModel):
     voice: Optional[str] = "meera"
 
 class SynthesisResponse(BaseModel):
-    audio_base64: str
-    format: str = "mp3"
+    audio_base64: Optional[str] = None
+    format: str = "wav"
     duration_ms: float
     provider: str = "sarvam"
 
@@ -73,17 +72,16 @@ class LatencyBreakdown(BaseModel):
     tts_ms: float = 0.0
     rag_core_ms: float = 0.0
     
-    # New Sub-200ms Telemetry Metrics
+    # 4-Metric Waterfall Metrics
     ttst_ms: float = 0.0      # Time To Speech Transcript
     ttr_ms: float = 0.0       # Time To Retrieval
     tta_ms: float = 0.0       # Time To Answer
-    ttfa_ms: float = 0.0      # Time To First Answer (Target <100ms P50, <200ms P95)
-    ttfaudio_ms: float = 0.0  # Time To First Audio (Target <150ms P50, <200ms P95)
+    ttfa_ms: float = 0.0      # Time To First Answer (QTTA Target <100ms P50, <200ms P95)
+    ttfaudio_ms: float = 0.0  # Time To First Audio (ATFA Target <350ms P50)
     ttc_ms: float = 0.0       # Time To Completion
     
     total_voice_ms: float = 0.0
     badge: str = "FAST" # FAST (<50ms), NORMAL (<150ms), SLOW
-
 
 # --- Engineering Trace Schema ---
 class EngineeringTrace(BaseModel):
@@ -97,7 +95,6 @@ class EngineeringTrace(BaseModel):
     tier_used: str # Tier 1 Extractive / Tier 2 Generative
     prompt_token_count: int = 0
     retry_count: int = 0
-
 
 # --- Main Query Response Schema ---
 class QueryRequest(BaseModel):
@@ -118,3 +115,26 @@ class QueryResponse(BaseModel):
     telemetry: LatencyBreakdown
     engineering_trace: Optional[EngineeringTrace] = None
     audio_base64: Optional[str] = None
+
+# --- Real-Time WebSocket Protocol Message Schemas ---
+class WSClientMessage(BaseModel):
+    type: str # START_STREAM, AUDIO_END, BARGE_IN, CANCEL_TURN, PING, TEXT_QUERY
+    language_hint: Optional[str] = "hi-IN"
+    query: Optional[str] = None
+    language: Optional[str] = None
+    turn_id: Optional[str] = None
+
+class WSServerMessage(BaseModel):
+    type: str # STREAM_STARTED, TRANSCRIPT_PARTIAL, TRANSCRIPT_STABLE, TRANSCRIPT_FINAL, QUERY_RESPONSE, TTS_START, TTS_FIRST_AUDIO, TTS_END, TURN_CANCELLED, ERROR, PONG
+    session_id: Optional[str] = None
+    conversation_id: Optional[str] = None
+    turn_id: Optional[str] = None
+    trace_id: Optional[str] = None
+    text: Optional[str] = None
+    language: Optional[str] = None
+    answer: Optional[str] = None
+    citations: Optional[List[Dict[str, Any]]] = None
+    telemetry: Optional[Dict[str, Any]] = None
+    grounded: Optional[bool] = None
+    error_message: Optional[str] = None
+    timestamp_ms: Optional[float] = None

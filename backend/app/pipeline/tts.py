@@ -4,13 +4,13 @@ Handles multilingual speech synthesis for Indian languages.
 """
 import time
 import uuid
-import httpx
 import base64
 from typing import Optional
 from backend.app.config import settings
 from backend.app.schemas import SynthesisResponse
+from backend.app.pipeline.http_client import get_http_client
 
-SARVAM_TTS_URL = "https://api.sarvam.ai/text-to-speech"
+SARVAM_TTS_URL = settings.SARVAM_TTS_URL
 
 VOICE_MAPPING = {
     "hi-IN": "meera",
@@ -35,45 +35,55 @@ class SarvamTTSEngine:
         start_time = time.perf_counter()
         language = language or "hi-IN"
         speaker = voice or VOICE_MAPPING.get(language, "meera")
+        api_key = self.api_key or settings.SARVAM_API_KEY
         
         # Standardize language code for Sarvam
         lang_code = language if "-" in language else f"{language}-IN"
 
-        if self.api_key and len(self.api_key) > 5:
+        if api_key and len(api_key) > 5:
             try:
-                headers = {"api-subscription-key": self.api_key, "Content-Type": "application/json"}
+                headers = {"api-subscription-key": api_key, "Content-Type": "application/json"}
                 payload = {
                     "inputs": [text],
                     "target_language_code": lang_code,
                     "speaker": speaker,
                     "model": "bulbul:v3"
                 }
-                async with httpx.AsyncClient(timeout=10.0) as client:
-                    resp = await client.post(SARVAM_TTS_URL, headers=headers, json=payload)
-                    if resp.status_code == 200:
-                        data = resp.json()
-                        audios = data.get("audios", [])
-                        if audios:
-                            duration_ms = (time.perf_counter() - start_time) * 1000.0
-                            return SynthesisResponse(
-                                audio_base64=audios[0],
-                                format="wav",
-                                duration_ms=round(duration_ms, 2),
-                                provider="sarvam"
-                            )
+                client = get_http_client()
+                resp = await client.post(SARVAM_TTS_URL, headers=headers, json=payload)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    audios = data.get("audios", [])
+                    if audios:
+                        duration_ms = (time.perf_counter() - start_time) * 1000.0
+                        return SynthesisResponse(
+                            audio_base64=audios[0],
+                            format="wav",
+                            duration_ms=round(duration_ms, 2),
+                            provider="sarvam"
+                        )
+                else:
+                    print(f"[!] Sarvam TTS returned status {resp.status_code}: {resp.text}")
             except Exception as e:
-                print(f"[!] Sarvam TTS API call failed: {e}. Falling back to high-speed synthesizer emulator.")
+                print(f"[!] Sarvam TTS API call failed: {e}")
 
-        # Fallback audio wave generator emulator (silent 0.5s valid WAV)
-        duration_ms = (time.perf_counter() - start_time) * 1000.0 + 8.2
-        # Minimal valid RIFF WAV header base64 (1 sec silent PCM audio)
-        mock_wav_b64 = "UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA="
+        # Guard emulator: Only allow test fallback if SHRUTI_TEST_MODE=True
+        if settings.SHRUTI_TEST_MODE:
+            duration_ms = (time.perf_counter() - start_time) * 1000.0 + 8.2
+            mock_wav_b64 = "UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA="
+            return SynthesisResponse(
+                audio_base64=mock_wav_b64,
+                format="wav",
+                duration_ms=round(duration_ms, 2),
+                provider="sarvam_test_emulator"
+            )
 
+        duration_ms = (time.perf_counter() - start_time) * 1000.0
         return SynthesisResponse(
-            audio_base64=mock_wav_b64,
-            format="wav",
+            audio_base64=None,
+            format="none",
             duration_ms=round(duration_ms, 2),
-            provider="sarvam_emulator"
+            provider="unavailable"
         )
 
 tts_engine = SarvamTTSEngine()
