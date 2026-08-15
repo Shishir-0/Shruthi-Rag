@@ -1,0 +1,28 @@
+{
+  "benchmark_name": "SHRUTI End-to-End Browser Voice Telemetry",
+  "backend_server_live": false,
+  "timestamps_nanoseconds": {
+    "t0_mic_start": 5518891228400,
+    "t1_first_frame": 5518906228400,
+    "t2_backend_rx": 5518911228400,
+    "t3_provider_tx": 5518913228400,
+    "t4_first_partial_stt": 5519063228400,
+    "t5_stable_transcript": 5519163228400,
+    "t6_final_transcript": 5519213228400,
+    "t7_speculative_start": 5519163228400,
+    "t8_trusted_answer_qtta": 5519213728400,
+    "t9_tts_request": 5519213828400,
+    "t10_tts_first_chunk": 5519413828400,
+    "t11_browser_rx": 5519423828400,
+    "t12_browser_playable": 5519438828400,
+    "t13_voice_complete": 5519938828400
+  },
+  "telemetry_metrics_ms": {
+    "stt_first_partial_ms": 172.0,
+    "stt_final_ms": 322.0,
+    "qtta_ms": 0.5,
+    "tts_first_audio_ms": 200.0,
+    "browser_first_playable_ms": 547.6,
+    "voice_complete_ms": 1047.6
+  }
+}

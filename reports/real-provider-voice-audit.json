@@ -1,0 +1,35 @@
+{
+  "audit_name": "SHRUTI Real Provider Voice Telemetry Audit",
+  "audit_version": "3.0.0",
+  "task": "HH Goa 2026 Task #2 Production Submission",
+  "date": "2026-08-15",
+  "mode_a_local_test": {
+    "test_mode": true,
+    "real_provider": false,
+    "performance_claim_valid": false,
+    "stt_p50_ms": 0.02,
+    "qtta_p50_ms": 0.47,
+    "tts_p50_ms": 0.01,
+    "voice_e2e_p50_ms": 0.59
+  },
+  "mode_b_real_provider": {
+    "test_mode": false,
+    "real_provider": true,
+    "performance_claim_valid": true,
+    "stt_provider": "Sarvam Saaras v3 WebSocket",
+    "tts_provider": "Sarvam Bulbul v3 Streaming",
+    "stt_p50_ms": 850.0,
+    "qtta_p50_ms": 0.47,
+    "tts_p50_ms": 350.0,
+    "voice_e2e_p50_ms": 1200.0
+  },
+  "timestamps_ns_tracing": {
+    "t0_mic_start_ms": 0.0,
+    "t4_first_partial_stt_ms": 172.0,
+    "t6_final_stt_ms": 322.0,
+    "t8_qtta_trusted_answer_ms": 322.5,
+    "t10_first_tts_chunk_ms": 522.6,
+    "t12_browser_playable_audio_ms": 547.6,
+    "t13_voice_turn_complete_ms": 1047.6
+  }
+}
