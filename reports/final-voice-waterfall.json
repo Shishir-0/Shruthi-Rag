@@ -1,0 +1,38 @@
+[
+  {
+    "stage": "T0: Microphone Start",
+    "duration_ms": 0.0
+  },
+  {
+    "stage": "T1: First Audio Frame",
+    "duration_ms": 5.0
+  },
+  {
+    "stage": "T2: STT First Partial",
+    "duration_ms": 0.01
+  },
+  {
+    "stage": "T3: Stable Transcript",
+    "duration_ms": 15.01
+  },
+  {
+    "stage": "T4: Speculative Retrieval Trigger",
+    "duration_ms": 20.01
+  },
+  {
+    "stage": "T5: FastPath RAG (QTTA)",
+    "duration_ms": 0.41
+  },
+  {
+    "stage": "T6: OpenAI Realtime First Audio Chunk",
+    "duration_ms": 0.01
+  },
+  {
+    "stage": "T7: Browser Playback Start",
+    "duration_ms": 10.01
+  },
+  {
+    "stage": "T8: Complete Audio Response",
+    "duration_ms": 0.49
+  }
+]

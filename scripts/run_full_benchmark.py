@@ -41,8 +41,8 @@ def capture_environment():
         "embedding_model": "LightweightMultilingualVectorEngine-v1 & SentenceTransformer",
         "vector_dimension": 384,
         "bm25_algorithm": "BM25Okapi",
-        "stt_provider": "Sarvam Saaras v3",
-        "tts_provider": "Sarvam Bulbul v3",
+        "stt_provider": "OpenAI Realtime / Whisper",
+        "tts_provider": "OpenAI Realtime / Speech",
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ")
     }
     with open(ENV_REPORT, "w", encoding="utf-8") as f:

@@ -1,9 +1,10 @@
 {
-  "benchmark_name": "SHRUTI Voice Telemetry Audit",
+  "benchmark_name": "SHRUTI OpenAI Realtime Telemetry Audit",
   "mode": "LOCAL_TEST_FIXTURE",
   "real_provider": false,
   "performance_claim_valid": false,
   "runs_count": 25,
+  "voice_stack": "OpenAI Realtime API",
   "metric_a_stt": {
     "mean": 0.01,
     "p50": 0.01,
@@ -11,21 +12,21 @@
     "p100": 0.01
   },
   "metric_b_qtta": {
-    "mean": 36.01,
-    "p50": 0.4,
-    "p95": 0.62,
-    "p100": 890.22
+    "mean": 36.05,
+    "p50": 0.41,
+    "p95": 0.69,
+    "p100": 890.84
   },
   "metric_c_atfa_tts": {
     "mean": 0.01,
     "p50": 0.01,
     "p95": 0.01,
-    "p100": 0.01
+    "p100": 0.02
   },
   "metric_d_voice_e2e": {
-    "mean": 36.09,
-    "p50": 0.46,
-    "p95": 0.73,
-    "p100": 890.42
+    "mean": 36.13,
+    "p50": 0.49,
+    "p95": 0.82,
+    "p100": 891.03
   }
 }

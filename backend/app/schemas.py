@@ -14,7 +14,7 @@ class TranscriptionResponse(BaseModel):
     language: str
     confidence: float
     duration_ms: float
-    provider: str = "sarvam"
+    provider: str = "openai"
     request_id: str
 
 # --- TTS Schemas ---
@@ -27,7 +27,7 @@ class SynthesisResponse(BaseModel):
     audio_base64: Optional[str] = None
     format: str = "wav"
     duration_ms: float
-    provider: str = "sarvam"
+    provider: str = "openai"
 
 # --- RAG Citation & Context Schemas ---
 class CitationItem(BaseModel):

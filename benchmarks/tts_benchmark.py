@@ -1,6 +1,6 @@
 """
 SHRUTI TTS Telemetry Benchmark Suite
-Benchmarks Sarvam Bulbul v3 TTS synthesis latency.
+Benchmarks OpenAI Speech TTS synthesis latency.
 """
 import sys
 import time
@@ -23,7 +23,7 @@ TEST_TTS_PHRASES = [
 
 async def benchmark_tts(num_runs: int = 50):
     print("==================================================")
-    print("SHRUTI TTS Benchmark (Sarvam Bulbul v3)")
+    print("SHRUTI TTS Benchmark (OpenAI Speech)")
     print("==================================================")
 
     latencies = []

@@ -27,8 +27,8 @@ services:
       - QDRANT_PORT=6333
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - SARVAM_API_KEY=${SARVAM_API_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_REALTIME_MODEL=${OPENAI_REALTIME_MODEL:-gpt-4o-realtime-preview-2024-10-01}
     depends_on:
       - qdrant
       - redis

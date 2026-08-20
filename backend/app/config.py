@@ -11,10 +11,12 @@ try:
         ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
         SHRUTI_TEST_MODE: bool = os.getenv("SHRUTI_TEST_MODE", "false").lower() == "true"
         CORS_ORIGINS: str = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://localhost:8000,http://127.0.0.1:3000,http://127.0.0.1:8000")
-        SARVAM_API_KEY: Optional[str] = os.getenv("SARVAM_API_KEY", "")
         OPENAI_API_KEY: Optional[str] = os.getenv("OPENAI_API_KEY", "")
+        OPENAI_REALTIME_MODEL: str = os.getenv("OPENAI_REALTIME_MODEL", "gpt-4o-realtime-preview-2024-10-01")
         QDRANT_HOST: str = os.getenv("QDRANT_HOST", "localhost")
         QDRANT_PORT: int = int(os.getenv("QDRANT_PORT", "6333"))
+        QDRANT_URL: str = os.getenv("QDRANT_URL", "http://localhost:6333")
+        QDRANT_API_KEY: Optional[str] = os.getenv("QDRANT_API_KEY", "")
         REDIS_HOST: str = os.getenv("REDIS_HOST", "localhost")
         REDIS_PORT: int = int(os.getenv("REDIS_PORT", "6379"))
         MAX_RAG_CORE_MS: float = 50.0
@@ -24,8 +26,6 @@ try:
         TOP_K_BM25: int = 10
         TOP_K_FINAL: int = 5
         GROUNDING_THRESHOLD: float = 0.70
-        SARVAM_STT_WS_URL: str = os.getenv("SARVAM_STT_WS_URL", "wss://api.sarvam.ai/speech-to-text/ws")
-        SARVAM_TTS_URL: str = os.getenv("SARVAM_TTS_URL", "https://api.sarvam.ai/text-to-speech")
 except ImportError:
     from pydantic import BaseModel
     class Settings(BaseModel):
@@ -33,10 +33,12 @@ except ImportError:
         ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
         SHRUTI_TEST_MODE: bool = os.getenv("SHRUTI_TEST_MODE", "false").lower() == "true"
         CORS_ORIGINS: str = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://localhost:8000,http://127.0.0.1:3000,http://127.0.0.1:8000")
-        SARVAM_API_KEY: Optional[str] = os.getenv("SARVAM_API_KEY", "")
         OPENAI_API_KEY: Optional[str] = os.getenv("OPENAI_API_KEY", "")
+        OPENAI_REALTIME_MODEL: str = os.getenv("OPENAI_REALTIME_MODEL", "gpt-4o-realtime-preview-2024-10-01")
         QDRANT_HOST: str = os.getenv("QDRANT_HOST", "localhost")
         QDRANT_PORT: int = int(os.getenv("QDRANT_PORT", "6333"))
+        QDRANT_URL: str = os.getenv("QDRANT_URL", "http://localhost:6333")
+        QDRANT_API_KEY: Optional[str] = os.getenv("QDRANT_API_KEY", "")
         REDIS_HOST: str = os.getenv("REDIS_HOST", "localhost")
         REDIS_PORT: int = int(os.getenv("REDIS_PORT", "6379"))
         MAX_RAG_CORE_MS: float = 50.0
@@ -46,7 +48,5 @@ except ImportError:
         TOP_K_BM25: int = 10
         TOP_K_FINAL: int = 5
         GROUNDING_THRESHOLD: float = 0.70
-        SARVAM_STT_WS_URL: str = os.getenv("SARVAM_STT_WS_URL", "wss://api.sarvam.ai/speech-to-text/ws")
-        SARVAM_TTS_URL: str = os.getenv("SARVAM_TTS_URL", "https://api.sarvam.ai/text-to-speech")
 
 settings = Settings()

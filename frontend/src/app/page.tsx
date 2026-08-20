@@ -174,7 +174,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="mt-16 text-center text-xs text-gray-500 font-mono z-10">
-        SHRUTI RAG Pipeline Core target &lt;50ms • Sarvam Saaras v3 STT &amp; Bulbul v3 TTS • Qdrant Vector &amp; BM25 Hybrid
+        SHRUTI RAG Pipeline Core target &lt;50ms • OpenAI Realtime API (Speech-to-Speech) • Qdrant Vector &amp; BM25 Hybrid
       </footer>
     </main>
   );

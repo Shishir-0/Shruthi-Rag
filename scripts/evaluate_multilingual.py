@@ -29,7 +29,7 @@ LANG_TEST_SUITE = [
 
 async def run_multilingual_eval():
     is_test_mode = settings.SHRUTI_TEST_MODE or "--test-mode" in sys.argv
-    has_api_key = bool(settings.SARVAM_API_KEY and len(settings.SARVAM_API_KEY) > 5)
+    has_api_key = bool(settings.OPENAI_API_KEY and len(settings.OPENAI_API_KEY) > 5)
 
     print("==================================================")
     print("SHRUTI End-to-End Multilingual Evaluation Suite")
@@ -92,7 +92,7 @@ async def run_multilingual_eval():
 - **Indic Script Detection**: Accurately classifies Devanagari, Gujarati, Bengali, Tamil, and Latin scripts.
 - **Language-Aware Chunking**: Preserves Indic punctuation delimiters (`।`, `॥`) without breaking clause semantics.
 - **Multilingual Reranking**: Boosts candidates matching the user's spoken language while supporting fallback cross-lingual retrieval.
-- **Sarvam AI Integration**: Native support for Saaras v3 STT and Bulbul v3 TTS across all 5 target Indian languages.
+- **OpenAI Realtime API**: Native support for multilingual Speech-to-Speech across Hindi, Gujarati, Bengali, Tamil, and English.
 """
 
     with open(MULTILINGUAL_MD, "w", encoding="utf-8") as f:

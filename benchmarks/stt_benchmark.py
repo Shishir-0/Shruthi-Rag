@@ -1,6 +1,6 @@
 """
 SHRUTI STT Telemetry Benchmark Suite
-Benchmarks Sarvam Saaras v3 STT latency and language accuracy.
+Benchmarks OpenAI Whisper STT latency and language accuracy.
 """
 import sys
 import time
@@ -23,7 +23,7 @@ TEST_AUDIO_PROMPTS = [
 
 async def benchmark_stt(num_runs: int = 50):
     print("==================================================")
-    print("SHRUTI STT Benchmark (Sarvam Saaras v3)")
+    print("SHRUTI STT Benchmark (OpenAI Whisper)")
     print("==================================================")
     
     # 1 second silent PCM audio wav bytes

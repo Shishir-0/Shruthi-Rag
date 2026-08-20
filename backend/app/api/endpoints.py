@@ -101,8 +101,8 @@ async def get_system_metrics():
         "indexed_chunks_count": len(hybrid_retriever.chunks_lookup),
         "target_rag_core_ms": 50.0,
         "supported_languages": ["hi", "gu", "bn", "ta", "en", "te", "mr", "pa"],
-        "stt_provider": "Sarvam Saaras v3",
-        "tts_provider": "Sarvam Bulbul v3",
+        "stt_provider": "OpenAI Realtime / Whisper",
+        "tts_provider": "OpenAI Realtime / Speech",
         "vector_database": "Qdrant",
         "keyword_index": "BM25"
     }
